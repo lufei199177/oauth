@@ -1,0 +1,12 @@
+
+server:
+  port: 9000
+
+oauth2:
+  client:
+    clientId: oauth2-clientId-0
+    clientSecret: oauth2-clientSecret-1
+    redirectUri: http://localhost:9000/callback
+  authServer:
+    authorizationEndpoint: http://localhost:9001/authorize
+    tokenEndpoint: http://localhost:9001/token
