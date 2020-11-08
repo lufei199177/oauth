@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+oauth2:
+  client:
+    #clientId: oauth2-clientId-0
+    clientId: ffd03794f0a032b7e1d9
+    #clientSecret: oauth2-clientSecret-1
+    clientSecret: f7b0d1f23f72ca1524fa5c6b925d9946aa5369f7
+    #redirectUri: http://localhost:9000/callback
+    redirectUri: http://localhost:8080/login/oauth2/code/github
+    grantType: authorization_code

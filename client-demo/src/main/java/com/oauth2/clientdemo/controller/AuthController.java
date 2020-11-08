@@ -44,6 +44,7 @@ public class AuthController {
 
     @GetMapping("/login/oauth2/code/github")
     public void handleCallback(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String sessionId=request.getSession().getId();
         String code=request.getParameter("code");
         MultiValueMap<String, String> params= new LinkedMultiValueMap<>();
         params.add("grant_type",this.grantType);
@@ -61,8 +62,9 @@ public class AuthController {
         RestTemplate restTemplate=new RestTemplate();
         ResponseEntity<JSONObject> result = restTemplate.exchange(this.tokenEndpoint, HttpMethod.POST, requestEntity, JSONObject.class);
         if(result!=null){
-            HttpSessionConfig.TOKEN_MAP.put(request.getSession().getId(),result.getBody());
-            response.sendRedirect(HttpSessionConfig.URL_MAP.get(request.getSession().getId()));
+            HttpSessionConfig.TOKEN_MAP.put(sessionId,result.getBody());
+            String url=HttpSessionConfig.URL_MAP.get(sessionId);
+            response.sendRedirect(url);
         }else{
             response.sendRedirect("/authFail");
         }

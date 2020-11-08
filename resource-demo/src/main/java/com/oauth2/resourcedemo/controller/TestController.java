@@ -1,11 +1,9 @@
 package com.oauth2.resourcedemo.controller;
 
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author lufei
@@ -28,7 +26,7 @@ public class TestController {
             return "token无效";
         }
         String token=trim.substring(6);
-
+        System.out.println("请求token为："+token);
         return "访问resource成功!";
     }
 }
